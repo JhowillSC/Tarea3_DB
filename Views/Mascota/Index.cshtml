@@ -35,6 +35,7 @@
             <th>Raza</th>
             <th>Color</th>
             <th>Fecha de Nacimiento</th>
+            <th>Acciones</th> <!-- Nueva columna para acciones -->
         </tr>
     </thead>
     <tbody>
@@ -45,6 +46,20 @@
                 <td>@Html.DisplayFor(modelMascota => item.Raza)</td>
                 <td>@Html.DisplayFor(modelMascota => item.Color)</td>
                 <td>@item.FechaNacimiento.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <!-- Botón Modificar -->
+                    <a asp-action="Editar" asp-route-id="@item.Id" class="btn btn-warning">Modificar</a>
+                    <!-- Botón Eliminar -->
+                    <form asp-action="Eliminar" asp-route-id="@item.Id" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        @if (!Model.ListMascota.Any())
+        {
+            <tr>
+                <td colspan="5" class="text-center">No hay mascotas registradas</td>
             </tr>
         }
     </tbody>
